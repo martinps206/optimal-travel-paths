@@ -1,0 +1,27 @@
+Dockerfile
+----------
+
+# Usa una imagen base de OpenJDK 11
+FROM openjdk:11-jre-slim
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia el jar construido de la aplicación al directorio de trabajo del contenedor
+COPY target/optimal-travel-paths.jar optimal-travel-paths.jar
+
+# Define el comando para ejecutar la aplicación cuando se inicie el contenedor
+CMD ["java", "-jar", "optimal-travel-paths.jar"]
+
+
+Abre una terminal en el directorio raíz de tu proyecto donde se encuentra el Dockerfile.
+Ejecuta el siguiente comando para construir la imagen Docker:
+------------------------------------
+docker build -t optimal-travel-paths 
+------------------------------------
+
+
+Una vez que la imagen Docker se haya construido correctamente, puedes ejecutar el contenedor Docker con el siguiente comando:
+-----------------------------------------------
+docker run -d -p 8080:8080 optimal-travel-paths
+-----------------------------------------------
